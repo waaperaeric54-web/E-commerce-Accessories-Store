@@ -4,9 +4,128 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>E-commerce Website</title>
-    <link rel="stylessheet" href="e-commerce.css" />
+    <link rel="stylesheet" href="e-commerce.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
+    <header class="nav-container">
+      <nav class="nav-bar">
+        <div class="nav-logo-ul">
+          <div class="logo">
+            <h1>Shop<span>Mate</span></h1>
+          </div>
+
+          <ul>
+            <a href="#"><li>Home</li></a>
+            <a href="#"><li>Products</li></a>
+            <a href="#"><li>About</li></a>
+            <a href="#"><li>Conatact</li></a>
+          </ul>
+        </div>
+
+        <div class="cart-login">
+          <div class="cart">
+            <img src="images-assets/shopping-cart.svg" />
+            <span>0</span>
+          </div>
+          <div class="login">
+            <img src="images-assets/user-round.svg" />
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="hero-content">
+        <h1>Discover Amazing Products</h1>
+        <p>High quality. Great prices. Delivered to you.</p>
+        <button>Shop Now <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="hero-image">
+        <img src="images-assets/hero2.png" alt="Hero image" />
+      </div>
+    </main>
+
+    <section class="feature-container">
+      <div class="feature-feaure">
+        <h2>Featured Products</h2>
+        <div class="feature-view">
+          <a href="#"><span>View All</span></a>
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </div>
+      <div class="feature-products">
+        <div class="feature-item">
+          <div>
+            <img src="images-assets/Black_Bluetooth_speaker_.jpeg" />
+          </div>
+          <div class="feature-text">
+            <h4>Mini-Speaker</h4>
+            <div class="rating">
+              <span>Star</span>
+              <span>(4.5)</span>
+              <h5>$46.70</h5>
+            </div>
+            <a><button>Add to Cart</button></a>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div>
+            <img src="images-assets/Smartphone_centered_dsiplay.jpeg" />
+          </div>
+          <div class="feature-text">
+            <h4>Smart Watch</h4>
+            <div class="rating">
+              <span>Star</span>
+              <span>(4.5)</span>
+              <h5>$40.70</h5>
+            </div>
+            <a><button>Add to Cart</button></a>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div><img src="images-assets/Modern_tablet.jpeg" /></div>
+          <div class="feature-text">
+            <h4>Tablet_024</h4>
+            <div class="rating">
+              <span>Star</span>
+              <span>(5)</span>
+              <h5>$75.70</h5>
+            </div>
+            <a><button>Add to Cart</button></a>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div><img src="images-assets/Aluminum_laptop.jpeg" /></div>
+          <div class="feature-text">
+            <h4>Waap Laptop</h4>
+            <div class="rating">
+              <span>Star</span>
+              <span>(4.5)</span>
+              <h5>$67.7</h5>
+            </div>
+            <a><button>Add to Cart</button></a>
+          </div>
+        </div>
+      </div>
+    </section>
     <script src="e-commerce.js"></script>
   </body>
 </html>
