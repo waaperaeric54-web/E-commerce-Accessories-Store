@@ -1,5 +1,27 @@
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// SELECTING THE CART COUNT ELEMENT ON THE CART PAGE
+const cartCount = document.querySelector(".cart-count");
+
+// CALCULATING THE TOTAL QUANTITY OF ITEMS IN THE CART
+const totalItems = cart.reduce((sum, product) => {
+  return sum + product.quantity;
+}, 0);
+
+// DISPLAYING THE TOTAL ITEMS INSIDE THE CART COUNT USING A TEMPLATE LITERAL
+cartCount.textContent = `(${totalItems})`;
+
+const total = cart.reduce((sum, product) => {
+  // HOW TO CALCULATE
+  return sum + product.price * product.quantity;
+}, 0); // (0) WERE TO START FROM
+console.log(total);
+
+//CREATING THE TOTAL-SUM VARIABLE WERE THE TOTAL VALUE WILL BE STORED
+const totalSum = document.querySelector(".total-sum");
+totalSum.textContent = `$${total.toFixed(2)}`;
+// total.toFixed(2) fomart the number to always show two decimal place
+
 const cartProductContainer = document.querySelector(".cart-product-container");
 
 console.log(cart);
@@ -40,6 +62,8 @@ cart.forEach((product) => {
     localStorage.setItem("cart", JSON.stringify(cart));
     location.reload();
   });
+
+  // CALLINGG A FUNCTION
 
   minusButton.addEventListener("click", () => {
     if (product.quantity > 1) {
