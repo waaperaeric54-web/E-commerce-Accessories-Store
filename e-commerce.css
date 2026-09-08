@@ -109,10 +109,9 @@ ul a:hover {
   height: 16px;
 }
 
-.login img:hover {
+.login:hover {
   border-color: #d6d5d5;
-  width: 20px;
-  height: 20px;
+  transform: scale(1.3);
 }
 /* </closing header nav-bar styling> */
 
@@ -205,6 +204,7 @@ ul a:hover {
 .quantity-control button:hover {
   transform: scale(1.1);
 }
+
 .total {
   display: flex;
   align-items: center;
@@ -244,6 +244,33 @@ ul a:hover {
 .cart-item-container {
   margin-top: 1rem;
 }
+
+.empty-cart-message {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 3rem;
+}
+
+.continue-shopping {
+  /* 
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #f5f4f6;
+  width: 50%; */
+  background-color: #6c63ff;
+  border-radius: 10px;
+  color: #f5f4f6;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+}
+
+.continue-shopping:hover {
+  background-color: #372cf8;
+}
 /* </CART.HTML STYLING> */
 
 /* <Hero section sytling> */
@@ -282,6 +309,9 @@ ul a:hover {
   color: #1f2937;
 }
 
+.hero-content a {
+  text-decoration: none;
+}
 .hero-content button {
   display: flex;
   align-items: center;
@@ -417,16 +447,34 @@ ul a:hover {
   }
 
   .mobile-nav-bar {
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+  /* .mobile-nav-bar:hover {
+    color: #372cf8;
+  } */
 
   .mobile-nav-bar a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.065rem;
+    padding: 5px;
+    border-radius: 50%;
+  }
+
+  .mobile-nav-bar img {
+    width: 20px;
+  }
+
+  .mobile-nav-bar span {
+    color: var(--text);
+    font-size: 0.75rem;
+  }
+
+  .mobile-nav-bar span:hover {
+    color: #372cf8;
   }
 }

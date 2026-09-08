@@ -15,6 +15,8 @@ function updateCartCount() {
   homeCartCount.textContent = totalItems;
 }
 
+updateCartCount();
+
 const AddToCartButtons = document.querySelectorAll(".add-to-cart-btn");
 
 AddToCartButtons.forEach((button) => {
