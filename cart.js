@@ -22,6 +22,14 @@ function updateCart() {
 
 updateCart();
 
+// function updateCartMessage() {
+//   if (cart.length === 0) {
+//     cartProductContainer.textContent = `${emptyMessage}`;
+//   }
+// }
+
+// updateCartMessage();
+
 /* THE WHOLE BRACKET NEXT IS REPLACED BY THE CODE AT THE TOP TO CREATE A REUSEABLE FUNCTION [
 
 // CALCULATING THE TOTAL QUANTITY OF ITEMS IN THE CART
@@ -44,18 +52,21 @@ totalSum.textContent = `$${total.toFixed(2)}`;
 
 const cartProductContainer = document.querySelector(".cart-product-container");
 
-if (cart.length === 0) {
-  const emptyMessage = document.createElement("p");
-  emptyMessage.classList.add("empty-cart-message");
-  emptyMessage.textContent = "Your cart is empty.";
-  cartProductContainer.appendChild(emptyMessage);
+function updateCartMessage() {
+  if (cart.length === 0) {
+    const emptyMessage = document.createElement("p");
+    emptyMessage.classList.add("empty-cart-message");
+    emptyMessage.textContent = "Your cart is empty.";
+    cartProductContainer.appendChild(emptyMessage);
 
-  const continueShopping = document.createElement("a");
-  continueShopping.href = "e-commerce.html";
-  continueShopping.textContent = "Continue Shopping";
-  cartProductContainer.appendChild(continueShopping);
-  continueShopping.classList.add("continue-shopping");
+    const continueShopping = document.createElement("a");
+    continueShopping.href = "e-commerce.html";
+    continueShopping.textContent = "Continue Shopping";
+    cartProductContainer.appendChild(continueShopping);
+    continueShopping.classList.add("continue-shopping");
+  }
 }
+updateCartMessage();
 
 console.log(cart);
 
@@ -83,14 +94,19 @@ cart.forEach((product) => {
           <button class="minus-btn">−</button>
           <span class="quantity">${product.quantity}</span>
           <button class="plus-btn">+</button>
+           <button class="remove-btn">Remove</button>
         </div>
       </div>
     </div>
   `;
 
   const plusButton = cartProduct.querySelector(".plus-btn");
+
   const minusButton = cartProduct.querySelector(".minus-btn");
+
   const quantityDisplay = cartProduct.querySelector(".quantity");
+
+  const removeButton = cartProduct.querySelector(".remove-btn");
 
   plusButton.addEventListener("click", () => {
     product.quantity++;
@@ -100,9 +116,8 @@ cart.forEach((product) => {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     updateCart();
+    // CALLINGG A FUNCTION
   });
-
-  // CALLINGG A FUNCTION
 
   minusButton.addEventListener("click", () => {
     if (product.quantity > 1) {
@@ -117,11 +132,29 @@ cart.forEach((product) => {
       cart.splice(productIndex, 1);
 
       cartProduct.remove();
+
+      updateCartMessage();
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
     updateCart();
+  });
+
+  removeButton.addEventListener("click", () => {
+    const productIndex = cart.findIndex(
+      (cartProduct) => cartProduct.id === product.id,
+    );
+
+    cart.splice(productIndex, 1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    cartProduct.remove();
+
+    updateCart();
+
+    updateCartMessage();
   });
 
   cartProductContainer.appendChild(cartProduct);
