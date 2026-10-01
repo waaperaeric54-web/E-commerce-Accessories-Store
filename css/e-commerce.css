@@ -214,6 +214,9 @@ ul a:hover {
   font-size: 1.2rem;
 }
 
+a {
+  text-decoration: none;
+}
 .summary-btn {
   border: none;
   display: flex;

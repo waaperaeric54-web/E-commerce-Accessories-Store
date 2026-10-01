@@ -6,6 +6,8 @@ const totalSum = document.querySelector(".total-sum");
 // SELECTING THE CART COUNT ELEMENT ON THE CART PAGE
 const cartCount = document.querySelector(".cart-count");
 
+const cartProductContainer = document.querySelector(".cart-product-container");
+
 function updateCart() {
   const totalItems = cart.reduce((sum, product) => {
     return sum + product.quantity;
@@ -19,8 +21,6 @@ function updateCart() {
 
   totalSum.textContent = `$${total.toFixed(2)}`;
 }
-
-updateCart();
 
 // function updateCartMessage() {
 //   if (cart.length === 0) {
@@ -49,23 +49,35 @@ console.log(total);
 
 totalSum.textContent = `$${total.toFixed(2)}`;
 // total.toFixed(2) fomart the number to always show two decimal place] */
-
-const cartProductContainer = document.querySelector(".cart-product-container");
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 function updateCartMessage() {
   if (cart.length === 0) {
-    const emptyMessage = document.createElement("p");
-    emptyMessage.classList.add("empty-cart-message");
-    emptyMessage.textContent = "Your cart is empty.";
-    cartProductContainer.appendChild(emptyMessage);
-
-    const continueShopping = document.createElement("a");
-    continueShopping.href = "e-commerce.html";
-    continueShopping.textContent = "Continue Shopping";
-    cartProductContainer.appendChild(continueShopping);
-    continueShopping.classList.add("continue-shopping");
+    // SIMPLIFIED EMPTY-CART MESSAGE BY USING innerHTML INSTEAD OF createElement() AND appendChild()
+    cartProductContainer.innerHTML = `
+    <p class="empty-cart-message"> Your cart is empty.</p>
+    <a href="e-commerce.html" class="continue-shopping">
+    Continue Shopping
+    </a>`;
   }
 }
+
+//   const emptyMessage = document.createElement("p");
+//   emptyMessage.classList.add("empty-cart-message");
+//   emptyMessage.textContent = "Your cart is empty.";
+//   cartProductContainer.appendChild(emptyMessage);
+
+//   const continueShopping = document.createElement("a");
+//   continueShopping.href = "e-commerce.html";
+//   continueShopping.textContent = "Continue Shopping";
+//   cartProductContainer.appendChild(continueShopping);
+//   continueShopping.classList.add("continue-shopping");
+// }
+// }
+
+updateCart();
 updateCartMessage();
 
 console.log(cart);
@@ -88,13 +100,13 @@ cart.forEach((product) => {
       </div>
 
       <div class="cart-price_quantity">
-        <span>$${product.price}</span>
+        <span>$${product.price.toFixed(2)}</span>
 
         <div class="quantity-control">
-          <button class="minus-btn">−</button>
+          <button type="button" class="minus-btn">−</button>
           <span class="quantity">${product.quantity}</span>
-          <button class="plus-btn">+</button>
-           <button class="remove-btn">Remove</button>
+          <button type="button" class="plus-btn">+</button>
+           <button type="button" class="remove-btn">Remove</button>
         </div>
       </div>
     </div>
@@ -113,8 +125,7 @@ cart.forEach((product) => {
 
     quantityDisplay.textContent = product.quantity;
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-
+    saveCart();
     updateCart();
     // CALLINGG A FUNCTION
   });
@@ -132,13 +143,13 @@ cart.forEach((product) => {
       cart.splice(productIndex, 1);
 
       cartProduct.remove();
-
-      updateCartMessage();
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    saveCart();
 
     updateCart();
+
+    updateCartMessage();
   });
 
   removeButton.addEventListener("click", () => {
@@ -148,7 +159,7 @@ cart.forEach((product) => {
 
     cart.splice(productIndex, 1);
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    saveCart();
 
     cartProduct.remove();
 

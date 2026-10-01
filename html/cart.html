@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart Page</title>
-    <link rel="stylesheet" href="e-commerce.css" />
+    <link rel="stylesheet" href="../css/e-commerce.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,13 +25,13 @@
     <section class="cart-container">
       <div class="cart-header">
         <div class="cart-display">
-          <div><img src="images-assets/shopping-cart.svg" /></div>
+          <div><img src="../images-assets/shopping-cart.svg" /></div>
           <h2>Your Cart</h2>
           <span class="cart-count">(0)</span>
         </div>
         <a href="e-commerce.html">
           <div class="close-btn">
-            <img src="images-assets/x.svg" alt="Close icon" />
+            <img src="../images-assets/x.svg" alt="Close icon" />
           </div>
         </a>
       </div>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="cart-product">
-          <div class="cart-product-img">
+          <div clabss="cart-product-img">
             <img
               src="images-assets/Black_smartwatch_display.jpeg"
               alt="smartwatch"
@@ -114,11 +114,14 @@
         <span>Total:</span>
         <span class="total-sum">$0</span>
       </div>
-      <button class="summary-btn">
-        <img src="images-assets/shopping-cart.svg" alt="cart icon" />
-        <span>Checkout</span>
-      </button>
+
+      <a href="checkout.html">
+        <button class="summary-btn">
+          <img src="../images-assets/shopping-cart.svg" alt="cart icon" />
+          <span>Checkout</span>
+        </button>
+      </a>
     </section>
-    <script src="cart.js"></script>
+    <script src="../js/cart.js"></script>
   </body>
 </html>
