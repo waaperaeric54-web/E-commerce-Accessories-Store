@@ -37,25 +37,25 @@ cart.forEach((product) => {
   item.classList.add("item");
 
   item.innerHTML = `
-  <span>${product.name} (x${product.quantity})<span>
+  <span>${product.name} (x${product.quantity}) </span>
   <span>$${(product.price * product.quantity).toFixed(2)}<span>`;
 
   checkoutItem.appendChild(item);
 });
 
 //CALCULATING SUBTOTAL
-const subtotal = cart.reduce((sum, product) => {
+const subTotal = cart.reduce((sum, product) => {
   return sum + product.price * product.quantity;
 }, 0);
 
 //DISPLAYING SUBTOTAL VALUE
-subtotalValue.textContent = `($${subtotal.toFixed(2)})`;
+subtotalValue.textContent = `($${subTotal.toFixed(2)})`;
 
 //DISPLAYING DELIVERY VALUE
 deliveryValue.textContent = `($${deliveryFee})`;
 
 //CALCULATE TOTAL
-const total = subtotal + deliveryFee;
+const total = subTotal + deliveryFee;
 
 //DISPLAY TOTAL VALUE
 totalValue.textContent = `($${total.toFixed(2)})`;
@@ -73,12 +73,66 @@ const phoneNumber = document.querySelector("#phone-number");
 const email = document.querySelector("#email");
 const deliveryAddress = document.querySelector("#delivery-address");
 
+// SELECTING ORDER CONFIRMATUION MESSAGE
+const orderConfirmation = document.querySelector(".order-confirmation");
+const orderIdDisplay = document.querySelector(".order-id");
+const customerNameDisplay = document.querySelector(".customer-name");
+
+// SELECTING CONFIRMED PRODUCT ELEMENT
+const confirmedProducts = document.querySelector(".confirmed-products");
+
+const confirmedTotal = document.querySelector(".confirmed-total");
+
 customerForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  console.log(firstName.value);
-  console.log(lastName.value);
-  console.log(phoneNumber.value);
-  console.log(email.value);
-  console.log(deliveryAddress.value);
+  if (
+    firstName.value === "" ||
+    lastName.value === "" ||
+    phoneNumber.value === "" ||
+    email.value === "" ||
+    deliveryAddress.value === ""
+  ) {
+    alert("Please fill in all the fields.");
+    return;
+  }
+
+  const customer = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    phoneNumber: phoneNumber.value,
+    email: email.value,
+    deliveryAddress: deliveryAddress.value,
+  };
+
+  const orderId = "ORD" + Date.now();
+
+  const order = {
+    orderId: orderId,
+    customer: customer,
+    products: cart,
+    subTotal: subTotal,
+    deliveryFee: deliveryFee,
+    total: total,
+  };
+
+  localStorage.setItem("order", JSON.stringify(order));
+
+  localStorage.removeItem("cart");
+
+  orderConfirmation.style.display = "block";
+  customerNameDisplay.textContent = customer.firstName;
+  orderIdDisplay.textContent = order.orderId;
+
+  order.products.forEach((product) => {
+    const item = document.createElement("p");
+
+    item.textContent = `${product.name} x ${product.quantity}`;
+
+    confirmedProducts.appendChild(item);
+  });
+
+  confirmedTotal.textContent = order.total.toFixed(2);
+  orderConfirmation.style.display = "block";
+  console.log(order);
 });

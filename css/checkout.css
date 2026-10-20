@@ -116,6 +116,25 @@ a {
   background-color: #372cf8;
 }
 
+.order-confirmation {
+  display: none;
+}
+
+.order-confirmation {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.order-confirmation h2 {
+  margin-bottom: 0.75rem;
+}
+
+.item {
+  gap: 0.65rem;
+}
+
 @media screen and (max-width: 768px) {
   .checkout-container {
     flex-direction: column;
